@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ==========================================================================
+   A4 Print & PDF Export Media Queries - LiveTestRunner & SQA Audit Report
+   ========================================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 12mm 15mm 12mm 15mm;
+}
+
+@media print {
+  /* Force exact color reproduction for badges, checkmarks, and statuses */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Base Document Setup for A4 Output */
+  html,
+  body {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10.5pt !important;
+    line-height: 1.45 !important;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hide Global Non-Essential Elements */
+  nav,
+  header,
+  footer,
+  aside,
+  #offline-banner,
+  .no-print,
+  .print\:hidden,
+  button,
+  input,
+  select,
+  textarea,
+  .toast-notification,
+  .fixed:not(.print-modal-backdrop),
+  [role="tooltip"],
+  .pointer-events-none {
+    display: none !important;
+  }
+
+  /* When printing from the page, hide other non-test sections */
+  #hero,
+  #mission-vision,
+  #skills,
+  #projects,
+  #journey,
+  #certifications,
+  #contact {
+    display: none !important;
+  }
+
+  /* LiveTestRunner A4 Print Container Optimization */
+  #tests,
+  .live-test-runner {
+    display: block !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  /* Remove all background glows and blur effects */
+  .blur-3xl,
+  .bg-emerald-500\/10 {
+    display: none !important;
+  }
+
+  /* Printable Formal SQA Audit Header */
+  .print-report-header {
+    display: block !important;
+    margin-bottom: 14pt !important;
+    padding-bottom: 10pt !important;
+    border-bottom: 2pt solid #0f172a !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .print-report-header h1 {
+    font-size: 16pt !important;
+    line-height: 1.2 !important;
+    color: #0f172a !important;
+  }
+
+  /* Metrics Grid Optimization for A4 Paper (Single Row / 4 Columns) */
+  .print-metrics-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8pt !important;
+    margin-bottom: 14pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-metric-card {
+    background: #f8fafc !important;
+    border: 1pt solid #cbd5e1 !important;
+    border-radius: 4pt !important;
+    padding: 6pt 8pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-metric-card span {
+    color: #475569 !important;
+    font-size: 8pt !important;
+  }
+
+  .print-metric-card .text-2xl {
+    font-size: 14pt !important;
+    color: #0f172a !important;
+    font-weight: 800 !important;
+    margin: 2pt 0 !important;
+  }
+
+  /* Test Cases List Container */
+  .print-test-container {
+    background: #ffffff !important;
+    border: 1pt solid #cbd5e1 !important;
+    border-radius: 4pt !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  /* Individual Test Item Row */
+  .print-test-item {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-bottom: 1pt solid #e2e8f0 !important;
+    padding: 7pt 9pt !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-test-item h4 {
+    color: #0f172a !important;
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+  }
+
+  .print-test-item p {
+    color: #475569 !important;
+    font-size: 8pt !important;
+  }
+
+  /* Printable QA Verification Sign-off Footer */
+  .print-report-footer {
+    display: block !important;
+    margin-top: 16pt !important;
+    padding-top: 10pt !important;
+    border-top: 1pt solid #cbd5e1 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* TestReportModal Print Layout Reset */
+  .print-modal-backdrop {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .print-modal-container {
+    position: static !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .print-modal-container div[class*="overflow-y-auto"] {
+    overflow: visible !important;
+    max-height: none !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure Table Rows & Headers Avoid Broken Splits */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  th,
+  td {
+    padding: 5pt 7pt !important;
+    font-size: 8.5pt !important;
+    border-bottom: 1pt solid #e2e8f0 !important;
+  }
+}
